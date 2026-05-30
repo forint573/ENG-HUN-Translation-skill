@@ -1,143 +1,134 @@
-# English → Hungarian Translator Skill for Claude (or any other AI)
+---
+name: translating-english-to-hungarian
+description: Translates English into idiomatic, native-sounding Hungarian rather than literal calque. Use whenever the user asks to translate, localize, or render English text in Hungarian (emails, documents, UI strings, marketing copy, subtitles, or a single word or phrase), and also when the user simply pastes English and asks for the Hungarian version. Covers the structures naive translation gets wrong, including topic-focus word order, definite vs. indefinite conjugation, dropped pronouns and copula, English passives, phrasal verbs, register (te/ön), and false friends.
+---
 
-You are a professional English-to-Hungarian translator. Your output must read as idiomatic, native Hungarian — never a literal English calque.
+# English → Hungarian Translation
 
-## When to use these rules
+Produce idiomatic, native Hungarian — never a word-for-word calque of the English. Hungarian organizes information around a pre-verbal focus position, drops what English makes explicit, and conjugates verbs by the definiteness of their object. A literal rendering looks grammatical but reads unmistakably foreign.
 
-You already translate English→Hungarian well.
-Trust your native intuition for sentences that flow naturally — don't over-apply rules where the translation already sounds Hungarian.
+## Operating principle (read first)
 
-Use these rules actively when:
-- The English structure tempts you toward a calque (passives, dummy "it", there is/are, SVO word order)
-- You're unsure about definite vs. indefinite conjugation
-- You encounter phrasal verbs, idioms, or false friends
-- The register (te/ön) is ambiguous from context
+You already translate English→Hungarian competently. Most sentences come out natural if you simply re-express the *meaning* instead of the words. So:
 
-Otherwise, write natural Hungarian. The self-check at the end is your safety net, not a checklist to mechanically force onto every sentence.
+- **Default to your own fluent Hungarian.** Do not mechanically run every rule below on every sentence — that produces over-corrected, stilted output (e.g. forcing focus-movement or a coverb construction where the plain version was already idiomatic). Over-application is as much a failure as calquing.
+- **Reach for the rules as a diagnostic** when the English structure is actively pulling you toward a calque: passives, dummy *it*, *there is/are*, rigid SVO order, phrasal verbs, or ambiguous register.
+- **The self-check at the end is a safety net**, not a per-sentence checklist. Apply it when a draft sentence still "feels English-shaped."
 
-## Translation Method
+## Method
 
-1. Read the whole paragraph — grasp meaning, tone, intent.
-2. Strip away English wording — hold only the meaning.
-3. Re-express freely in Hungarian — restructure, split, merge sentences. Hungarian organizes by topic–focus–verb, not SVO.
-4. Polish — read your Hungarian version aloud; fix anything unnatural.
+1. Read the whole passage for meaning, tone, and intent.
+2. Hold the meaning; drop the English wording.
+3. Re-express in Hungarian — freely restructure, split, or merge sentences around topic–focus–verb.
+4. Read your Hungarian aloud; fix anything a native would not say.
 
-## Core Rules (apply always)
+## Failure modes to catch
 
-### 1. Word order: Topic → Focus → Verb → Rest
+### Word order: neutral order vs. the pre-verbal focus slot
+Neutral sentences — no special emphasis — are often the *same* order as English (subject–verb–object): *Tamás eszi az almát.* (Tamás is eating the apple.) Don't reorder a sentence that is already neutral and natural. Two things break the English parallel:
 
-The focus (new/emphasised information) sits immediately before the conjugated verb.
+- **Trailing time/place adverbials.** English tacks them onto the end; Hungarian normally places them *before* the verb. This is the single most common calque.
+  - Peter saw a cat in the garden yesterday.
+  - calque: *Péter látott egy macskát a kertben tegnap.*
+  - natural: **Péter tegnap a kertben látott egy macskát.**
+- **Emphasis / contrast.** Whatever is emphasized — the answer to an implicit *who/what/where?*, or an English *it was X that…* cleft — moves into the slot **immediately before the verb**, and any coverb is pushed after the verb.
+  - It was PÉTER who ate the apple. → **PÉTER ette meg az almát.** (neutral: *Péter megette az almát.*)
 
-| English | Bad (SVO calque) | Good |
-|---------|------------------|------|
-| Peter saw a cat in the garden yesterday. | Péter látott egy macskát a kertben tegnap. | Péter tegnap a kertben látott egy macskát. |
+### Drop what Hungarian does not need
+- **Subject pronouns** — omit unless emphatic: *It is raining.* → **Esik.** (never *Az esik.*); *I love it.* → **Imádom.** (never *Imádom azt.*)
+- **Copula van/vannak** — omit with predicate adjectives or nouns in 3rd-person present: *The house is big.* → **A ház nagy.** (never *…nagy van.*). Keep it for **location** and **existence**: *The cup is on the table.* → **A csésze az asztalon van.**
+- **There is/are** → sentence-initial **Van/Vannak**, never *Ott van*: *There is a book on the table.* → **Van egy könyv az asztalon.**
+- **Indefinite article egy** — drop far more often than English uses *a/an*: *I am a doctor.* → **Orvos vagyok.** (not *Egy orvos vagyok.*)
 
-When English would use It was X that…, put X in pre-verbal focus.
-
-### 2. Drop what Hungarian doesn't need
-
-Subject pronouns — omit unless emphatic:
-- It is raining. → Esik. (never Az esik.)
-- I love it. → Imádom. (never Imádom azt.)
-
-Copula van/vannak — omit with predicate adjectives/nouns in 3rd-person present:
-- The house is big. → A ház nagy. (never A ház nagy van.)
-
-Keep van/vannak for location and existence statements. Note: English there is/are maps to Van/Vannak sentence-initially, never Ott van:
-- The cup is on the table. → A csésze az asztalon van.
-- There is a book on the table. → Van egy könyv az asztalon. (not Ott van egy könyv...)
-
-Indefinite article egy — omit far more often than English uses a/an:
-- I am a doctor. → Orvos vagyok. (not Egy orvos vagyok.)
-
-### 3. Definite vs. indefinite conjugation — choose correctly
+### Definite vs. indefinite conjugation
+Match the verb to its object. This is one of the most audible non-native errors.
 
 | Object | Conjugation | Example |
 |--------|-------------|---------|
-| none / indefinite (egy, valami, valaki) | indefinite | Látok egy fát. (I see a tree) |
-| definite (a/az, proper name, őt/azt, possessive suffix) | definite | Látom a fát. (I see the tree) |
+| none, or indefinite (*egy*, *valami*, *valaki*, bare plural) | indefinite | *Látok egy fát.* (I see a tree) · *Fákat látok.* (I see trees) |
+| definite article / proper name / possessive / demonstrative / 3rd-person pronoun (*őt, azt, őket*) | definite | *Látom a fát.* (I see the tree) · *Látom őt.* (I see her) |
 
-### 4. Passive → Active
+Three cases a literal approach gets wrong:
+- **1st/2nd person object pronouns take the *indefinite* conjugation**, even though *me/you/us* feel definite: *Látsz engem.* (You see me.) · *Ők látnak titeket.* (They see you all.)
+- **But "I → you" has its own special definite form, *-lak/-lek*** — extremely common, so don't miss it: *Szeretlek.* (I love you.) · *Látlak.* (I see you.) · *Várlak.* (I'm waiting for you.) Used only when the subject is *I* and the object is *you* (singular or plural).
+- **Verbs of liking/knowing take a generic object with the definite article + definite conjugation**, where English uses a bare noun: *Szeretem a kávét.* (I like coffee.) — not *Szeretek kávét.*
 
-Hungarian has no true passive. Convert English passive to active or middle voice.
-- The bread is sliced. → Felszeletelik a kenyeret. (3rd plural active) or A kenyér felszeletelődik. (middle)
-- Mistakes were made. → Hibákat követtek el.
+### English passive → Hungarian active or resultative
+Hungarian has no generalized syntactic passive. Choose by what the English passive actually describes:
 
-### 5. Future tense
+- **An action or event** (something happened; the agent is unstated) → **3rd-person-plural active**:
+  - Mistakes were made. → **Hibákat követtek el.**
+  - The door was opened. → **Kinyitották az ajtót.**
+  - The newspaper was already read. → **Az újságot már elolvasták.**
+- **A resulting state** (English is/are + participle, describing a condition) → the ***-va/-ve van* resultative**, the closest Hungarian equivalent of the English passive:
+  - The door is locked. → **Az ajtó be van zárva.**
+  - The window is closed. → **Az ablak be van csukva.**
+  - The screen is broken. → **A képernyő be van törve.**
 
-Hungarian often uses present tense for scheduled/inevitable future. Use fog + infinitive for emphasis or uncertainty.
-- I will call you tomorrow. → Holnap hívlak. (present)
-- It will probably rain. → Valószínűleg esni fog. (fog + infinitive)
+Note the contrast: *the door was opened* (event) → **kinyitották**, but *the door is locked* (state) → **be van zárva**. Cautions: *-va/-ve van* only works with certain telic transitive verbs — when it sounds off, use the 3rd-plural active instead (*A könyvet megírták*, not *A könyv meg van írva*). Use a lexical middle/anticausative only where idiomatic for that verb (*eltörik* — breaks, *elromlik* — breaks down, *kinyílik* — opens); don't manufacture *-ódik/-ődik* forms as a generic passive. Avoid the archaic *-tatik/-tetik* passive (*megméretik*) outside deliberately literary or legal text.
 
-### 6. Reposition key connectors — don't calque English word order
+### Future tense
+Hungarian commonly uses the **present** for scheduled or certain future; reserve **fog + infinitive** for emphasis or uncertainty.
+- I will call you tomorrow. → **Holnap hívlak.** (present)
+- It will probably rain. → **Valószínűleg esni fog.**
 
-| English | Bad position | Good position |
-|---------|--------------|---------------|
-| without commuting | … anélkül, hogy ingázna (mid-sentence) | Anélkül, hogy ingázna, … (sentence-initial) |
-| even if it rains | Elmegyek, még ha esik is | Még ha esik is, elmegyek |
-| for example | … for example, … (after comma) | Move early, often without comma: Amikor például otthonról dolgozol… |
+### Connector placement — do not calque English position
+| English | calque | natural |
+|---------|--------|---------|
+| without commuting | *…anélkül, hogy ingázna* | **Anélkül, hogy ingázna, …** (front) |
+| even if it rains | *Elmegyek, még ha esik is* | **Még ha esik is, elmegyek.** |
+| for example | *…, for example, …* | move early, often no comma: **Amikor például otthonról dolgozol…** |
 
-Always: not only … but also → nemcsak … hanem … is (never de … is)
+Always: *not only … but also* → **nemcsak … hanem … is** (never *de … is*).
 
-### 7. Idioms and phrasal verbs — never calque
-
-English phrasal verbs often map to Hungarian coverb+verb constructions. The coverb carries aspect/direction and must be placed correctly — pre-verbal in neutral sentences, post-verbal in negation and certain focus constructions.
-
-| English | Calque | Native |
+### Phrasal verbs and idioms → coverb constructions, never word-for-word
+| English | calque | native |
 |---------|--------|--------|
-| look for | néz valamiért | keres |
-| give up | ad fel | felad |
-| it's raining heavily | esik keményen | szakad az eső |
+| look for | *néz …-ért* | **keres** |
+| give up | *ad fel* | **felad** |
+| it's raining heavily | *esik keményen* | **szakad az eső** |
 
-Coverb placement examples:
-- I found it. → Megtaláltam.
-- I didn't find it. → Nem találtam meg.
+Coverb placement carries aspect and direction: **pre-verbal** in neutral sentences, **post-verbal** under negation or focus.
+- I found it. → **Megtaláltam.**  ·  I didn't find it. → **Nem találtam meg.**
 
-### 8. Possession: possessor first
+### Possession: possessor first
+- Peter's book → **Péter könyve**
+- the window of the house → **a ház ablaka**
+- I have a book → **Van egy könyvem.** (dative possessor + *van* + possessed noun with suffix)
 
-- Peter's book → Péter könyve
-- the window of the house → a ház ablaka
-- I have a book → Van egy könyvem. (dative possessor + van + possessed with suffix)
-
-### 9. Register: te vs. ön
-
+### Register: te vs. ön
 | Context | Choice |
 |---------|--------|
-| Casual, friends, peers | te / ti |
-| Professional, public, formal | ön / önök (verb in 3rd person) |
+| casual, friends, peers | *te / ti* |
+| professional, public, formal | *ön / önök* (verb in 3rd person) |
 
-When unsure, default to ön/önök.
+Keep it consistent within a single text. When context is genuinely ambiguous, default to **ön/önök**.
 
-### 10. Vowel harmony
+### Vowel harmony
+Every suffix must harmonize with its stem: back-vowel stems take back suffixes (*ház-ban*), front-vowel stems take front (*kert-ben*), with front-rounded variants where they exist (*-hoz / -hez / -höz*). The vowels *i, í, e, é* are neutral — some stems containing only these still take **back** suffixes (*híd → hidak*, *férfi → férfiak*), so follow the attested form rather than guessing. A single disharmonic suffix marks the text as non-native.
 
-All suffixes must harmonise. Apply the rules without fail.
+## False friends
+| English | wrong | correct |
+|---------|-------|---------|
+| sympathetic | *szimpatikus* (means *likeable*) | **együttérző** |
+| eventually | *eventuálisan* (means *possibly / contingently*) | **végül / idővel** |
+| actually | *aktuálisan* (means *currently*) | **valójában / tulajdonképpen** |
+| sensitive | *szenzitív* | **érzékeny** |
+| realise | *realizál* (means *implement / realize a profit*) | **rájön / felismer** |
 
-## False Friends — Common Traps
+## Output format
+- Return **only** the Hungarian translation — no commentary, no notes.
+- **Single word / short phrase:** give the equivalent; if ambiguous, add a short disambiguating label in parentheses, e.g. *asztal (bútor) / tábla (iskolai).*
+- **Longer text:** preserve paragraph breaks, lists, bold, and italics.
+- Leave brand names, code, URLs, and placeholders unchanged.
 
-| English | Wrong Hungarian | Correct |
-|---------|----------------|---------|
-| sympathetic | szimpatikus | együttérző |
-| eventually | eventuálisan | végül |
-| actually | aktuálisan | valójában / tulajdonképpen |
-| sensitive | szenzitív | érzékeny |
-| realise | realizál | rájön / felismer |
-
-## Output Format
-
-- Return only the Hungarian translation — no commentary, no notes.
-- Single word / short phrase — provide equivalent. If ambiguous, add a brief label in parentheses: asztal (bútor) / tábla (iskolai).
-- Longer text — preserve paragraph breaks, bullet points, bold, italics.
-- Leave brand names, code, URLs, placeholders unchanged.
-
-## Pre-Delivery Self-Check (10 questions)
-
-1. Would a native speaker say this naturally?
-2. Have I removed unnecessary azt / őt / egy / van?
-3. Is the word order Topic–Focus–Verb, not English SVO?
-4. Is the focus element immediately before the conjugated verb?
-5. Have I moved without, even if, for example to their correct positions?
-6. Did I replace all phrasal verbs and idioms properly?
-7. Is the definite/indefinite conjugation correct for every verb?
-8. Have I converted English passive constructions to active?
-9. Is the register (te vs. ön) consistent and appropriate?
-10. Have I applied vowel harmony to every suffix?
+## Self-check (run when a sentence still feels English-shaped)
+1. Would a native say this, unprompted?
+2. Removed unnecessary *azt / őt / egy / van*?
+3. Emphasized element immediately before the verb? Time/place adverbials moved off the end?
+4. *without / even if / for example* moved to their natural positions?
+5. Phrasal verbs and idioms rendered as coverb constructions, not calqued?
+6. Conjugation correct for every verb — including 1st/2nd-person objects (*indefinite*) and the I→you *-lak/-lek* form?
+7. English passives rendered as 3rd-plural active, or as *-va/-ve van* where they describe a state?
+8. Register (te/ön) consistent and appropriate?
+9. Vowel harmony correct on every suffix?
