@@ -1,5 +1,7 @@
 # English to Hungarian Translation Skill for Claude
 
+(agent built stuff)
+
 Translate English into idiomatic, native-sounding Hungarian instead of a literal, word-for-word calque. This is a drop-in [Agent Skill](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview) for Claude and Claude Code that fixes the Hungarian-specific structures generic AI translation gets wrong.
 
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
